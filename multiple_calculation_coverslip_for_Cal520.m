@@ -1,0 +1,21 @@
+function [C,D,E]=multiple_calculation_coverslip_for_Cal520(h1,h2,h3,h4,h5,h6)
+c1=analysis_intensity_200frames_trace_for_Cal520(h1);
+c2=analysis_intensity_200frames_trace_for_Cal520(h2);
+c3=analysis_intensity_200frames_trace_for_Cal520(h3);
+c4=analysis_intensity_200frames_trace_for_Cal520(h4);
+c5=analysis_intensity_200frames_trace_for_Cal520(h5);
+c6=analysis_intensity_200frames_trace_for_Cal520(h6);
+%c7=analysis_intensity_200frames_trace_for_Cal520(h7);
+%c8=analysis_intensity_200frames_trace_for_Cal520(h8);
+%c9=analysis_intensity_200frames_trace_for_Cal520(h9);
+C=horzcat(c1,c2,c3,c4,c5,c6);
+[~,n]=size(C);
+i=1;
+E=zeros(n,3);% arae under curve suring stimulation is first row, after stimulation is second row of matrix E
+while i<=n
+    E(i,1)=sum(C(21:140,i));
+    E(i,2)=sum(C(141:200,i));
+    E(i,3)=max(C(1:200,i));
+    i=i+1;
+end;
+D=multiple_calculation_for_Cal520(C);

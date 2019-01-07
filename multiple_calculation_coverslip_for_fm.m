@@ -1,0 +1,19 @@
+function [C,D,E]=multiple_calculation_coverslip_for_fm(h1,h2,h3,h4,h5,h6)
+c1=analysis_intensity_200frames_trace_for_fm(h1);
+c2=analysis_intensity_200frames_trace_for_fm(h2);
+c3=analysis_intensity_200frames_trace_for_fm(h3);
+c4=analysis_intensity_200frames_trace_for_fm(h4);
+c5=analysis_intensity_200frames_trace_for_fm(h5);
+c6=analysis_intensity_200frames_trace_for_fm(h6);
+%c7=analysis_intensity_200frames_trace_for_fm(h7);
+%c8=analysis_intensity_200frames_trace_for_fm(h8);
+%c9=analysis_intensity_200frames_trace_for_fm(h9);
+C=horzcat(c1,c2,c3,c4,c5,c6);
+[~,n]=size(C);
+i=1;
+E=zeros(n,1);
+while i<=n
+    E(i,1)=1-mean(C(141:200,i));
+    i=i+1;
+end;
+D=multiple_calculation(C);
